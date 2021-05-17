@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class BlockController {
-
     private static final String PATH = "/block";
 
     @RequestMapping(value = PATH, method = RequestMethod.PUT)

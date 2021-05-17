@@ -5,23 +5,48 @@
  */
 package com.kanjizoiie.minecraft_blueprint_repository.data_storage_types;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author Mackan
  */
 public class Block {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
-    private final int id;
-    private final String name;
-    private final String unique_name;
+    @NotNull
+    private String name;
 
-    public Block() {
-        this.id = 0;
-        this.name = null;
-        this.unique_name = null;
+    public Long getId() {
+        return id;
     }
 
-    public Block(int id, String name, String unique_name) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnique_name() {
+        return unique_name;
+    }
+
+    public void setUnique_name(String unique_name) {
+        this.unique_name = unique_name;
+    }
+
+    private String unique_name;
+
+    protected Block() {}
+
+    public Block(Long id, String name, String unique_name) {
         this.id = id;
         this.name = name;
         this.unique_name = unique_name;

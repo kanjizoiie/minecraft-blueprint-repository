@@ -1,13 +1,13 @@
 package com.kanjizoiie.minecraft_blueprint_repository.controllers;
 
 import com.kanjizoiie.minecraft_blueprint_repository.data_storage_types.Blueprint;
-import com.kanjizoiie.minecraft_blueprint_repository.responses.BlueprintResponse;
+import com.kanjizoiie.minecraft_blueprint_repository.repositories.BlueprintRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -15,34 +15,39 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class BlueprintController {
-
     private static final String PATH = "/blueprint";
+    private final BlueprintRepository repository;
 
-    @RequestMapping(value = PATH, method = RequestMethod.POST)
+    public BlueprintController(BlueprintRepository repository) {
+        this.repository = repository;
+    }
+
+    @RequestMapping(value = PATH, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public String createBlueprint(@RequestBody BlueprintResponse response) {
-        Blueprint bp = response;
-        return bp.getName();
+    public Blueprint createBlueprint(@RequestBody Blueprint response) {
+        return repository.save(response);
     }
     
     
-    @RequestMapping(value = PATH, method = RequestMethod.PUT)
+    @RequestMapping(value = PATH, method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public String editBlueprint(@RequestBody BlueprintResponse response) {
-        Blueprint bp = response;
-        return bp.getName();
+    public Blueprint editBlueprint(@RequestBody Blueprint response) {
+        return repository.save(response);
     }
 
-    @RequestMapping(value = PATH, method = RequestMethod.DELETE)
+    @RequestMapping(value = PATH, method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public String removeBlueprint() {
-        return "REMOVED BLUEPRINT";
+    public void removeBlueprint(@RequestBody Blueprint response) {
+        repository.delete(response);
     }
 
     @RequestMapping(value = PATH, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public BlueprintResponse readBlueprint() {
-        BlueprintResponse bp = new BlueprintResponse("testingblueprint", 0, 0, 0);
-        return bp;
+    public Blueprint readBlueprint(@RequestParam Long id) {
+        try {
+            return repository.findById(id).orElseThrow();
+        } catch (NoSuchElementException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 }
