@@ -1,0 +1,19 @@
+@import "../../styles/color";
+
+.notification {
+  padding: 0.75em;
+  border-radius: 0.3em;
+  background-color: $background;
+
+  &__close {
+    float: right;
+    & > * {
+      transition: 100ms ease;
+      &:hover,
+      &:focus {
+        color: #6c6c6c;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+@import "../../styles/color";
+
+.button {
+    &:hover {
+        transition: all 0.6s;
+        color: #000000;
+        background-color: $button-raised-background-color;
+        & > i {
+            color: $button-raised-hover-text-color;
+        }
+    }
+
+    &.floating {
+        border-radius: 50%;
+        border: 1px solid $light-border;
+
+        &:hover {
+            color: #000000;
+            background-color: $button-raised-background-color;
+            & > i {
+                color: $button-raised-hover-text-color;
+            }
+        }
+        transition: all 0.6s;
+    }
+
+    &.outlined {
+        border: $button-raised-width solid $button-raised-color;
+        &:hover {
+            color: #000000;
+            background-color: $button-raised-background-color;
+            & > i {
+                color: $button-raised-hover-text-color;
+            }
+        }
+        transition: all 0.6s;
+    }
+
+    &.raised {
+        background-color: $button-raised-background-color;
+        box-shadow: $raised-shadow;
+
+        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            background-color: darken($button-raised-background-color, 10%);
+            & > i {
+                color: $button-raised-hover-text-color;
+            }
+        }
+
+        &:active {
+            box-shadow: $raised-shadow-pressed;
+        }
+    }
+
+    display: flex;
+    align-items: center;
+
+    padding: 0.5em;
+    border-radius: 0.15em;
+
+    text-decoration: none;
+    cursor: pointer;
+}

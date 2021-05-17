@@ -1,0 +1,10 @@
+@for $size from 1 through 32 {
+  .font-size {
+    &-pt-#{$size} {
+      font-size: $size * 1px;
+    }
+    &-em-#{$size} {
+      font-size: $size * 0.05em;
+    }
+  }
+}

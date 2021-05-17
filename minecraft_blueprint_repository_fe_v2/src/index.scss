@@ -1,0 +1,16 @@
+@import "styles/color";
+@import "styles/common";
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+* {
+  font-family: "IBM Plex Sans", "Roboto", "Verdana", "Geneva", "Tahoma",
+    "sans-serif";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}

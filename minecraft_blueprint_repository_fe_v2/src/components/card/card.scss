@@ -1,0 +1,40 @@
+.card {
+    position: relative;
+
+    width: 30em;
+    padding: 1em;
+    transition: 0.3s;
+
+    box-shadow: 0 4px 8px 0 #00000033;
+
+    border-radius: 10px;
+
+    & * {
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    &__content {
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & * {
+            flex: 0 0 auto;
+        }
+    }
+
+    &__image {
+        width: 100%;
+    }
+
+    &:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+}

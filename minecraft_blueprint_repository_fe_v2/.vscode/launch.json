@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "train-io-serverless:HelloWorldFunction",
+            "invokeTarget": {
+                "target": "template",
+                "templatePath": "train-io-serverless/template.yml",
+                "logicalId": "HelloWorldFunction"
+            },
+            "lambda": {
+                "payload": {},
+                "environmentVariables": {}
+            }
+        }
+    ]
+}

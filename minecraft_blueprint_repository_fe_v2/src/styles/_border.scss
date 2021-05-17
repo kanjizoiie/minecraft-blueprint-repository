@@ -1,0 +1,5 @@
+@for $radius from 0 through 30 {
+  .border-radius-#{$radius} {
+    border-radius: $radius * 0.05em;
+  }
+}

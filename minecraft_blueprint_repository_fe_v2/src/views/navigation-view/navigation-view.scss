@@ -1,0 +1,12 @@
+.navigation-view__page {
+    display: flex;
+    justify-content: space-evenly;
+    
+    &__nav-area {
+        background-color: #293042;
+    }
+
+    &__content-area {
+        background-color: #ffffff;;
+    }
+}

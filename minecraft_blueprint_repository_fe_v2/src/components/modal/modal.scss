@@ -1,0 +1,36 @@
+@import "../../styles/color";
+
+.modal {
+  background-color: #00000033;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &__window {
+    background-color: $primary;
+    margin: 5% auto;
+    width: 40em;
+
+    border-radius: 0.3em;
+    padding: 1em;
+
+    &__content {
+      margin: 0 0.5em;
+    }
+    &__close {
+      font-size: 10pt;
+      margin-right: 0.5em;
+      float: right;
+      & > * {
+        transition: 100ms ease;
+        &:hover,
+        &:focus {
+          color: $icon-hover;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

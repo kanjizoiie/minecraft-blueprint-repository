@@ -1,0 +1,19 @@
+@for $value from 0 to 32 {
+  .padding {
+    &-#{$value} {
+      padding: $value * 0.15em;
+    }
+    &-sm-#{$value} {
+      padding: $value * 0.05em;
+    }
+  }
+
+  .margin {
+    &-sm-#{$value} {
+      padding: $value * 0.05em;
+    }
+    &-#{$value} {
+      padding: $value * 0.15em;
+    }
+  }
+}
