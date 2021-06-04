@@ -1,51 +1,24 @@
 import * as React from "react";
-import { Block } from "../presentational/Block";
-import { Button, Icon, Card, Segment } from "semantic-ui-react";
-
-const testData = [
-    {
-        name: "Grass"
-    },
-    {
-        name: "Dirt"
-    },
-    {
-        name: "Stone"
-    },
-    {
-        name: "Cobblestone"
-    },
-]
+import { Block, IBlockProps } from "../presentational/block/Block";
+import { Card, Segment } from "semantic-ui-react";
 
 
-export class BlockContainer extends React.Component<{}, {}> {
+interface IBlockContainerProps {
+    blockData?: Array<IBlockProps>
+}
+
+export class BlockContainer extends React.Component<IBlockContainerProps, {}> {
     constructor(props: any) {
         super(props);
     }
 
-
     render(): JSX.Element {
         return (
-            <div>
-                <Button.Group>
-                    <Button icon>
-                        <Icon name='add' />
-                    </Button>
-                    <Button icon>
-                        <Icon name='minus' />
-                    </Button>
-                    <Button icon>
-                        <Icon name='edit' />
-                    </Button>
-                </Button.Group>
-                <Segment>
-                    <Card.Group>
-                        {
-                            testData.map((block) => <Block blockName={ block.name }/>)
-                        }
-                    </Card.Group>
-                </Segment>
-            </div>
+            <Segment>
+                <Card.Group itemsPerRow={4}>
+                    {this.props.blockData ? this.props.blockData.map((block: IBlockProps, index: number) => <Block key={index} {...block} />) : null}
+                </Card.Group>
+            </Segment>
         );
     }
 }

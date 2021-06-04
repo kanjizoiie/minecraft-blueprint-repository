@@ -2,7 +2,11 @@ import * as React from "react";
 import * as THREE from "three";
 
 
-export class BlockScene extends React.Component<{}, {}> {
+export interface IBlockSceneProps {
+    materialImageURL?: string
+}
+
+export class BlockScene extends React.Component<IBlockSceneProps, {}> {
     constructor(props: any) {
         super(props);
     }
@@ -28,11 +32,21 @@ export class BlockScene extends React.Component<{}, {}> {
         //ADD RENDERER
         this.renderer = new THREE.WebGLRenderer({ antialias: true })
         this.renderer.setSize(width, height)
+
+        
         this.mount.appendChild(this.renderer.domElement)
 
         //ADD CUBE
         const geometry = new THREE.BoxGeometry(1, 1, 1)
-        const material = new THREE.MeshBasicMaterial({ color: '#433F81' })
+        let material: THREE.MeshBasicMaterial = null;
+
+        if (this.props.materialImageURL) {
+            const texture = new THREE.TextureLoader().load(this.props.materialImageURL);
+            material = new THREE.MeshBasicMaterial({ map: texture });
+        } else {
+            material = new THREE.MeshBasicMaterial({ color: '#FF00FF' });
+        }
+
         this.cube = new THREE.Mesh(geometry, material)
         this.scene.add(this.cube)
         this.start()
