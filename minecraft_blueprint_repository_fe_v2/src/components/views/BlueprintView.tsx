@@ -1,26 +1,24 @@
 import * as React from "react";
-import { Segment, Header, Icon, Button } from "semantic-ui-react";
+import { EmptyContainer } from "../containers/EmptyContainer";
 
-export class BlueprintView extends React.Component<{}, {}> {
+interface IBlueprintViewState {
+    blueprintData: Array<any>
+}
+
+export class BlueprintView extends React.Component<{}, IBlueprintViewState> {
     constructor(props: any) {
         super(props);
+        this.state = {
+            blueprintData: []
+        }
     }
 
 
     render(): JSX.Element {
         return (
-            <Segment placeholder>
-                <Header icon>
-                    <Icon name='block layout' />
-                    We don't have any documents matching your query.
-                </Header>
-                <Segment.Inline>
-                    <Button>
-                        <Icon name='add' />
-                        Add Blueprint
-                    </Button>
-                </Segment.Inline>
-            </Segment>
+            <div>
+                { this.state.blueprintData.length > 0 ? null : <EmptyContainer /> }
+            </div>
         );
     }
 }

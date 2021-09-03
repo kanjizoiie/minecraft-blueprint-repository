@@ -13,7 +13,7 @@ interface ChartProps {
 interface ChartState {}
 
 export class Chart extends React.Component<ChartProps, ChartState> {
-  private chart: ChartJS;
+  private chart: ChartJS.Chart;
   private canvasContext: CanvasRenderingContext2D;
 
   constructor(props: any) {
@@ -23,27 +23,7 @@ export class Chart extends React.Component<ChartProps, ChartState> {
   componentDidMount() {
     this.chart = new ChartJS.Chart(this.canvasContext, {
       type: this.props.type || "bar",
-      data: this.props.data,
-      options: {
-        legend: {
-          display: true,
-          align: "start"
-        },
-        plugins: {
-          zoom: {
-            pan: {
-              enabled: true,
-              mode: "x"
-            },
-            zoom: {
-              enabled: true,
-              drag: true,
-              mode: "x"
-            }
-          },
-          ...this.props.options
-        }
-      }
+      data: this.props.data
     });
   }
 

@@ -11,8 +11,35 @@ export class FeedView extends React.Component<{}, {}> {
     render(): JSX.Element {
         return (
             <div>
-                <h1>Feed</h1>
-                <FeedContainer />
+                <FeedContainer feed={[{
+                    date: new Date(),
+                    summary: "test",
+                    icon: {
+                        color: "green",
+                        name: "checkmark"
+                    },
+                },{
+                    date: new Date(),
+                    summary: "test",
+                    icon: {
+                        color: "green",
+                        name: "checkmark"
+                    },
+                },{
+                    date: new Date(),
+                    summary: "test",
+                    icon: {
+                        color: "green",
+                        name: "checkmark"
+                    },
+                },{
+                    date: new Date(),
+                    summary: "test",
+                    icon: {
+                        color: "green",
+                        name: "checkmark"
+                    },
+                }]} />
             </div>
         );
     }

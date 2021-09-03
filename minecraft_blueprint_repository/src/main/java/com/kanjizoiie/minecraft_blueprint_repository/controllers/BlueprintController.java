@@ -9,10 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.NoSuchElementException;
 
-/**
- *
- * @author Mackan
- */
+
 @RestController
 public class BlueprintController {
     private static final String PATH = "/blueprint";

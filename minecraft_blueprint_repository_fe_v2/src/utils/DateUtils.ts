@@ -1,3 +1,11 @@
+
+export enum ConversionFactor {
+    Seconds = 1000,
+    Hours = Seconds * 3600,
+    Days = Hours * 24,
+    Weeks = Days * 7
+}
+
 export class DateUtils {
 
     /**
@@ -6,12 +14,8 @@ export class DateUtils {
      * @param dateSecond Second date that will be used to count the days between.
      * @returns number of days between the first and last day rounded to an integer.
      */
-    public static calculateDaysBetweenDates(dateFirst: Date, dateSecond: Date): number {
-        if (dateFirst.getTime() > dateSecond.getTime()) {
-            return Math.round((dateFirst.getTime() - dateSecond.getTime()) / (1000 * 3600 * 24));
-        } else  {
-            throw new Error("The first date is not later than the second date, this would provide a negative amount of days.");
-        }
+    public static calculateTimeBetweenDates(dateFirst: Date, dateSecond: Date, conversion?: ConversionFactor): number {
+        return Math.floor((dateFirst.getTime() - dateSecond.getTime()) / (conversion ? conversion : ConversionFactor.Days));
     }
 
     /**
@@ -20,6 +24,6 @@ export class DateUtils {
      * @returns the amount of days since the current date and the provided date rounded to an integer.
      */
     public static calculateDaysFromNow(date: Date): number {
-        return DateUtils.calculateDaysBetweenDates(new Date(), date);
+        return DateUtils.calculateTimeBetweenDates(new Date(), date, ConversionFactor.Days);
     }
 }

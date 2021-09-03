@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BlockScene, IBlockSceneProps } from "../scenes/BlockScene";
-import { Card } from "semantic-ui-react";
+import { Button, Card } from "semantic-ui-react";
+import { DateUtils } from "../../../utils/DateUtils";
 
 export interface IBlockProps {
     blockName: string
@@ -21,8 +22,18 @@ export class Block extends React.Component<IBlockProps, {}> {
                 <Card.Content>
                     <Card.Header>{this.props.blockName}</Card.Header>
                     <Card.Meta>
-                        <span className='date'>Created: {this.props.blockCreatedDate.toISOString()}</span>
+                        <span className='date'>Created: {DateUtils.calculateDaysFromNow(this.props.blockCreatedDate)} days ago</span>
                     </Card.Meta>
+                </Card.Content>
+                <Card.Content extra>
+                    <div className='ui two buttons'>
+                        <Button basic color='green'>
+                            Approve
+                        </Button>
+                        <Button basic color='red'>
+                            Decline
+                        </Button>
+                    </div>
                 </Card.Content>
             </Card>
         );

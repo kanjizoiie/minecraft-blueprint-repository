@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Route, Switch} from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 import { MainView } from "./components/views/MainView";
@@ -16,13 +16,19 @@ export class App extends React.Component<{}, {}> {
     render(): JSX.Element {
         return (
             <Container>
-                <AppMenu menuItems={[{ header: true,  name: "Home", active: false }, { name: "home", active: false }, { name: "bob", active: false }]} />
+                <AppMenu inverted menuItems={
+                    [
+                        { color: "blue", inverted: true, header: true, name: "Feed", active: true, as: Link, to: "/feed" },
+                        { name: "Blocks", active: false, as: Link, to: "/blocks" },
+                        { name: "Blueprints", active: false, as: Link, to: "/blueprints" }
+                    ]
+                } />
                 <Switch>
                     <React.Fragment>
-                        <Route path = "/feed" component = { FeedView } />
-                        <Route path = "/blocks" component = { BlockView } />
-                        <Route path = "/blueprints" component = { BlueprintView } />
-                        <Route exact path = "/" component = { MainView } />
+                        <Route path="/feed" component={FeedView} />
+                        <Route path="/blocks" component={BlockView} />
+                        <Route path="/blueprints" component={BlueprintView} />
+                        <Route exact path="/" component={MainView} />
                     </React.Fragment>
                 </Switch>
             </Container>

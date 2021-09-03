@@ -1,8 +1,22 @@
 import * as React from "react";
-import { Feed, Icon } from "semantic-ui-react";
+import { Feed, Icon, SemanticCOLORS } from "semantic-ui-react";
+import { SemanticICONS } from "semantic-ui-react/dist/commonjs/generic";
 import { DateUtils } from "../../utils/DateUtils";
 
-export class FeedContainer extends React.Component<{}, {}> {
+interface IFeedItem {
+    summary: String,
+    date: Date,
+    icon: {
+        name: SemanticICONS,
+        color: SemanticCOLORS
+    }
+}
+
+interface IFeedProps {
+    feed?: Array<IFeedItem>
+}
+
+export class FeedContainer extends React.Component<IFeedProps, {}> {
     constructor(props: any) {
         super(props);
     }
@@ -10,28 +24,21 @@ export class FeedContainer extends React.Component<{}, {}> {
     render(): JSX.Element {
         return (
             <Feed>
-                <Feed.Event>
-                    <Feed.Label>
-                        <Icon name="checkmark" color="green"/>
-                    </Feed.Label>
-                    <Feed.Content>
-                        <Feed.Summary>
-                            <a>Joe Henderson</a> posted on his page
-                            <Feed.Date>{DateUtils.calculateDaysFromNow(new Date(2021, 1, 1))} days ago</Feed.Date>
-                        </Feed.Summary>
-                    </Feed.Content>
-                </Feed.Event>
-                <Feed.Event>
-                    <Feed.Label>
-                        <Icon name="close" color="red"/>
-                    </Feed.Label>
-                    <Feed.Content>
-                        <Feed.Summary>
-                            <a>Joe Henderson</a> posted on his page
-                            <Feed.Date>{DateUtils.calculateDaysFromNow(new Date(2021, 1, 1))} days ago</Feed.Date>
-                        </Feed.Summary>
-                    </Feed.Content>
-                </Feed.Event>
+                {
+                    this.props.feed.length > 0 ? this.props.feed.map((feedItem: IFeedItem, index: number) =>
+                        <Feed.Event key={index}>
+                            <Feed.Label>
+                                <Icon {...feedItem.icon} />
+                            </Feed.Label>
+                            <Feed.Content>
+                                <Feed.Summary>
+                                    {feedItem.summary}
+                                    <Feed.Date>{DateUtils.calculateDaysFromNow(feedItem.date)} days ago</Feed.Date>
+                                </Feed.Summary>
+                            </Feed.Content>
+                        </Feed.Event>
+                    ) : null
+                }
             </Feed>
         );
     }
