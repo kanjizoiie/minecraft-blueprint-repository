@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"path": "minecraft-repo"
+	},
+	{
+		"path": "minecrat-repo-crud-block"
+	},
+	{
+		"path": "minecrat-repo-crud-blueprint"
+	}
+],
+  "settings": {
+    "java.compile.nullAnalysis.mode": "automatic"
+  }
+}
