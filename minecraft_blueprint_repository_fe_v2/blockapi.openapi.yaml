@@ -1,0 +1,120 @@
+---
+openapi: 3.0.3
+info:
+    title: Example API
+    contact:
+        name: Example API Support
+        url: http://exampleurl.com/contact
+        email: techsupport@example.com
+    license:
+        name: Apache 2.0
+        url: https://www.apache.org/licenses/LICENSE-2.0.html
+    version: 1.0.1
+servers:
+    - url: http://localhost:8080
+      description: Auto generated value
+    - url: http://0.0.0.0:8080
+      description: Auto generated value
+tags:
+    - name: widget
+      description: Widget operations.
+    - name: gasket
+      description: Operations related to gaskets
+paths:
+    /block:
+        get:
+            tags:
+                - Block Controller
+            operationId: getBlockEndpoint
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Block"
+        put:
+            tags:
+                - Block Controller
+            operationId: updateBlockEndpoint
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/Block"
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Block"
+        post:
+            tags:
+                - Block Controller
+            operationId: insertBlockEndpoint
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/Block"
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Block"
+        delete:
+            tags:
+                - Block Controller
+            operationId: deleteBlockEndpoint
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/Block"
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Block"
+    /block/{blockId}:
+        get:
+            tags:
+                - Block Controller
+            operationId: getSpecificBlockEndpoint
+            parameters:
+                - name: blockId
+                  in: path
+                  required: true
+                  schema:
+                      format: int64
+                      default: "0"
+                      type: integer
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Block"
+components:
+    schemas:
+        Block:
+            type: object
+            properties:
+                id:
+                    format: int64
+                    type: integer
+                name:
+                    type: string
+    securitySchemes:
+        SecurityScheme:
+            type: http
+            description: Authentication
+            scheme: basic

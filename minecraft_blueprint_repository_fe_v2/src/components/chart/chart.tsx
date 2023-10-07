@@ -10,12 +10,11 @@ function TestChart({ data }: TestChartProps) {
     <ResponsiveContainer width={300} height={300}>
       <LineChart width={400} height={400} data={data}>
 
-        <Line type="monotone" dataKey="data" stroke="#8884d8" />
-        <Line type="monotone" dataKey="data" stroke="#8884d8" />
+        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
 
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="date" />
-        <YAxis dataKey="data" />
+        <YAxis dataKey="uv" />
         <Tooltip />
       </LineChart>
     </ResponsiveContainer>

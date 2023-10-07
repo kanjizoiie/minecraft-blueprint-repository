@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BlockScene, IBlockSceneProps } from "../scenes/BlockScene";
+import { BlockScene, IBlockSceneProps } from "../Scenes/BlockScene";
 import { Button, Card, CardBody, CardHeader } from "@chakra-ui/react";
 import { DateUtils } from "../../utils/DateUtils";
 
@@ -9,31 +9,24 @@ export interface IBlockProps {
   blockSceneSettings?: IBlockSceneProps
 }
 
-export class Block extends React.Component<IBlockProps, {}> {
-  constructor(props: any) {
-    super(props);
-  }
-
-
-  render(): JSX.Element {
-    return (
-      <Card>
-        <BlockScene {...this.props.blockSceneSettings} />
-        <CardHeader>
-          {this.props.blockName}
-          <span className='date'>Created: {DateUtils.calculateDaysFromNow(this.props.blockCreatedDate)} days ago</span>
-        </CardHeader>
-        <CardBody>
-          <div className='ui two buttons'>
-            <Button color='green'>
-              Approve
-            </Button>
-            <Button color='red'>
-              Decline
-            </Button>
-          </div>
-        </CardBody>
-      </Card>
-    );
-  }
+function Block({ blockName, blockCreatedDate, blockSceneSettings }: IBlockProps) {
+  return (
+    <Card>
+      <BlockScene {...blockSceneSettings} />
+      <CardHeader>
+        {blockName}
+        <span className='date'>Created: {DateUtils.calculateDaysFromNow(blockCreatedDate)} days ago</span>
+      </CardHeader>
+      <CardBody>
+        <Button color='green'>
+          Approve
+        </Button>
+        <Button color='red'>
+          Decline
+        </Button>
+      </CardBody>
+    </Card >
+  );
 }
+
+export { Block };

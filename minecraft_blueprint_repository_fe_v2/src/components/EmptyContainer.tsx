@@ -1,25 +1,16 @@
 import * as React from "react";
-import { Button, Icon, Heading } from "@chakra-ui/react";
+import { Icon, Heading } from "@chakra-ui/react";
+import { MdClose } from "react-icons/md";
 
-export class EmptyContainer extends React.Component<{}, {}> {
-  constructor(props: any) {
-    super(props);
-  }
 
-  render(): JSX.Element {
-    return (
-      <div>
-        <Heading>
-          <Icon name='block layout' />
-          We don't have any objects matching your query.
-        </Heading>
-        <div>
-          <Button>
-            <Icon name='add' />
-            Add new item
-          </Button>
-        </div>
-      </div>
-    );
-  }
+function EmptyContainer() {
+  return (
+    <div>
+      <Heading>
+        <Icon as={MdClose} />We don't have any objects matching your query.
+      </Heading>
+    </div>
+  );
 }
+
+export { EmptyContainer };
